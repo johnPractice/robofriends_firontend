@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACI,QAAS,CACT,SAAU,CACV,uDACJ","file":"main.6b349e54.chunk.css","sourcesContent":["body{\r\n    margin: 0;\r\n    padding: 0;\r\n    background-image: linear-gradient(to left ,rgb(7,27,82) 0%,rgb(0,128,128) 100%);\r\n}"]}
