@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
 import CardList from "./Components/CardList";
-import {robots} from "./data/robots";
 import SearchBox from "./Components/SearchBox";
 //App class Component
 class App extends React.Component {
     constructor(props) {
+        console.log('in constructor');
         super(props);
         //define state for App Component
         this.state={
-            robots:robots,
+            robots:[],
             searchField:''
         }
     }
@@ -20,11 +20,35 @@ class App extends React.Component {
 
         this.setState({...this.state,searchField:value});
     };
+    //component will mount
+    componentWillMount() {
+        console.log('in component will mount');
+    }
+    //component did mount
+    componentDidMount() {
+        console.log('in component did mount');
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res=>res.json())
+            .then(users=>
+            {
+                console.log(users);
+                this.setState({...this.state,robots:users});
+            })
+            .catch(e=>console.error(e));
+    }
+
     render() {
+        console.log('in render');
+
         //after changing the searchField re-render the DOM and page
         const filteredRobots = this.state.robots.filter(robot=>{
             return robot.name.toLowerCase().includes(this.state.searchField);
         });
+        if(this.state.robots.length === 0){
+            return (
+                <h1>Loading :)</h1>
+            );
+        }
         return (
             <div className="tc">
                 <h1 className='blue fw9-ns'>Robo Friends</h1>
