@@ -1,7 +1,7 @@
 import React from "react";
 
 const SearchBox=(props)=>{
-    const {onSearchChange,value} = props
+    const {onSearchChange,value} = props; 
     return(
         <div className='pa2'>
           <input
