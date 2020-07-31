@@ -7,6 +7,7 @@ import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
 import Scroll from "../Components/Scroll";
 import ErrorBoundry from "../Components/ErrorBoundry";
+
 //App class Component
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
     componentWillMount() {
         console.log('in component will mount');
     }
+
     //component did mount
     componentDidMount() {
         // console.log('in component did mount');
@@ -37,29 +39,30 @@ class App extends React.Component {
 
     render() {
         console.log('in render');
-        const {searchField,onSearchChange,robots,isPending} = this.props;
+        const {searchField, onSearchChange, robots, isPending} = this.props;
         //after changing the searchField re-render the DOM and page
-        const filteredRobots = robots.filter(robot=>{
+        const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchField.toLowerCase());
         });
         return (
-        isPending?
-            <h1>Loading :)</h1>
-       :
-            <div className="tc">
-                <h1 className='blue fw9-ns'>Robo Friends</h1>
-                <SearchBox onSearchChange={onSearchChange} value={searchField}/>
-                <Scroll>
-                    <ErrorBoundry>
-                        <CardList robots={filteredRobots}/>
-                    </ErrorBoundry>
-                </Scroll>
-            </div>
+            isPending ?
+                <h1>Loading :)</h1>
+                :
+                <div className="tc">
+                    <h1 className='blue fw9-ns'>Robo Friends</h1>
+                    <SearchBox onSearchChange={onSearchChange} value={searchField}/>
+                    <Scroll>
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots}/>
+                        </ErrorBoundry>
+                    </Scroll>
+                </div>
         );
     }
 }
+
 //define map state to props
-const mapStateToProps =(state)=>{
+const mapStateToProps = (state) => {
     return {
         searchField: state.searchRobots.searchField,
         robots: state.requestRobots.robots,
@@ -69,10 +72,10 @@ const mapStateToProps =(state)=>{
     }
 };
 //define mapDispatchToProps
-const  mapDispatchToProps=(dispatch)=>{
-    return{
-        onSearchChange : (e)=>dispatch(setSearchField(e.target.value)),
-        onRequestRobots:()=>requestRobots(dispatch)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (e) => dispatch(setSearchField(e.target.value)),
+        onRequestRobots: () => requestRobots(dispatch)
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
