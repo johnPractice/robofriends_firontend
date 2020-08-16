@@ -7,6 +7,7 @@ import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
 import Scroll from "../Components/Scroll";
 import ErrorBoundry from "../Components/ErrorBoundry";
+import Header from "../Components/Header";
 
 //App class Component
 class App extends React.Component {
@@ -49,7 +50,7 @@ class App extends React.Component {
                 <h1>Loading :)</h1>
                 :
                 <div className="tc">
-                    <h1 className='blue fw9-ns'>Robo Friends</h1>
+                    <Header/>
                     <SearchBox onSearchChange={onSearchChange} value={searchField}/>
                     <Scroll>
                         <ErrorBoundry>
